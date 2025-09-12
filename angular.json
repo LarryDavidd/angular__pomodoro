@@ -3,11 +3,12 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "poker": {
+    "todo_pomodoro": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
         }
       },
       "root": "",
@@ -18,9 +19,6 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -61,10 +59,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "poker:build:production"
+              "buildTarget": "todo_pomodoro:build:production"
             },
             "development": {
-              "buildTarget": "poker:build:development"
+              "buildTarget": "todo_pomodoro:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,10 +73,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -94,8 +88,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
