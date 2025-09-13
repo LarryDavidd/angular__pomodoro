@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="main-page__header">
+    <h2>{{ dayTodo() }}</h2>
+    <div class="main-page__icons-wrapper">
+      <mat-icon>sort</mat-icon>
+    </div>
+  </div>
+  <div class="main-page__todos-statistics">
+    <div class="todos__wrapper">
+      <p class="todos__value">
+        {{ estimatedTime() }}<span class="todos__minutes">m</span>
+      </p>
+      <p class="todos__text">Расчетное время</p>
+    </div>
+    <div class="todos__wrapper">
+      <p class="todos__value">
+        {{ tasksAwaiting() }}<span class="todos__minutes"></span>
+      </p>
+      <p class="todos__text">Задачи, ожидающие выполнения</p>
+    </div>
+    <div class="todos__wrapper">
+      <p class="todos__value">
+        {{ timeSpent() }}<span class="todos__minutes">m</span>
+      </p>
+      <p class="todos__text">Потраченное время</p>
+    </div>
+    <div class="todos__wrapper">
+      <p class="todos__value">
+        {{ completedTasks() }}<span class="todos__minutes"></span>
+      </p>
+      <p class="todos__text">Завершенные задачи</p>
+    </div>
+  </div>
+  <app-form-todos></app-form-todos>
+  <app-todos></app-todos>
+</div>

@@ -1,0 +1,29 @@
+<form
+  class="todos__form"
+  [formGroup]="addTodoForm"
+  (submit)="formSubmitHandler()"
+>
+  <mat-icon
+    (click)="formSubmitHandler()"
+    class="icon icon__todos icon__todos_add"
+    >add</mat-icon
+  >
+  <input
+    placeholder="Добавить задачу в 'Задачи', Нажмите клавишу [Enter], чтобы сохранить"
+    class="todos__input"
+    formControlName="title"
+  />
+  <div class="todos__tomato-wrapper">
+    @for (item of fiveArray; track $index) {
+    <mat-icon
+      class="icon icon__todos"
+      [class.icon__todos_active]="isIconActive($index)"
+      (mousedown)="addTomatoHandler($index, $event)"
+      >apple</mat-icon
+    >
+    }
+    <mat-icon class="icon icon__todos icon__todos_right"
+      >chevron_right</mat-icon
+    >
+  </div>
+</form>

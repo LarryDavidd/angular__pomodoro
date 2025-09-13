@@ -1,0 +1,42 @@
+.todos__form {
+  display: flex;
+  position: relative;
+}
+
+.todos__input {
+  width: 95%;
+  padding: 0.8rem;
+  padding-left: 2rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.icon__todos_add {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.todos__tomato-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.todos__input:focus {
+  border: 1px solid var(--color-focus-input);
+  outline: none;
+}
+
+.icon__todos {
+  color: var(--color-icon-tomato);
+  cursor: pointer;
+}
+
+.icon__todos_active {
+  color: var(--color-icon-tomato-active);
+}
