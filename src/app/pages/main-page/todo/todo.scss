@@ -1,0 +1,44 @@
+.main-page__todos-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg-second);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.todos-link__todo-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.circle__todo {
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border: 0.5px solid gray;
+  border-radius: 50%;
+
+  &_active {
+    background-color: green;
+  }
+}
+
+.todos-link__icon {
+  font-size: 24px;
+
+  &_check {
+    font-size: 15px;
+    color: white;
+  }
+}
+
+.icon__todos {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-icon-tomato-active);
+}

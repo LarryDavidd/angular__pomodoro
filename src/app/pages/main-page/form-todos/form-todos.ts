@@ -1,6 +1,8 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -13,10 +15,12 @@ import {
 } from '@angular/forms';
 import { isEmptyValidate } from '../../../utils/is-empty-validate';
 import { TodoStore } from '../../../store/todo-store';
+import { TodoIncModal } from '../todo-inc-modal/todo-inc-modal';
+import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
 
 @Component({
   selector: 'app-form-todos',
-  imports: [MatIconModule, ReactiveFormsModule],
+  imports: [MatIconModule, ReactiveFormsModule, TodoIncModal, TomatoIcon],
   templateUrl: './form-todos.html',
   styleUrl: './form-todos.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,11 +28,14 @@ import { TodoStore } from '../../../store/todo-store';
 export class FormTodos {
   readonly state = inject(TodoStore);
   public fiveArray = Array.from({ length: 5 });
-  private activeValueCount = signal(0);
+  public activeValueCount = signal(0);
+  public openTodoInc = signal(false);
 
   public addTodoForm = new FormGroup({
     title: new FormControl('', [Validators.required, isEmptyValidate]),
   });
+
+  public activeValueMoreFive = computed(() => this.activeValueCount() > 5);
 
   public addTomatoHandler(index: number, event: Event): void {
     event.preventDefault();
@@ -61,4 +68,12 @@ export class FormTodos {
     form.reset();
     this.activeValueCount.set(0);
   }
+
+  public openModalInc() {
+    this.openTodoInc.update((value) => !value);
+  }
+
+  public closeModal = () => {
+    this.openTodoInc.set(false);
+  };
 }

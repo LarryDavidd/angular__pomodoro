@@ -1,0 +1,30 @@
+<li class="main-page__todos-link">
+  <div class="todos-link__todo-options">
+    <span (click)="todoCompleteHandler(todo().idTodo)" class="circle__todo">
+      @if(todo().isComplete) {
+      <mat-icon class="icon todos-link__icon todos-link__icon_check"
+        >check</mat-icon
+      >
+      }
+    </span>
+    <mat-icon class="icon todos-link__icon">play_circle</mat-icon>
+    <div>
+      <span class="todos-link__title">
+        {{ todo().title }}
+      </span>
+      <div>
+        @if(isNumberMoreFive(todo().pomodoroValue)) { @for (item of
+        createArray(todo().pomodoroValue); track $index) {
+        <mat-icon class="icon icon__todos">apple</mat-icon>
+        } } @else {
+        <div>
+          <mat-icon class="icon icon__todos">apple</mat-icon> 0 /
+          <mat-icon class="icon icon__todos">apple</mat-icon>
+          {{ todo().pomodoroValue }}
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <span>{{ getFormattedDate(todo().timeCreate) }}</span>
+</li>

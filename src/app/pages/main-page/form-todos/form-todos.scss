@@ -33,10 +33,21 @@
 }
 
 .icon__todos {
-  color: var(--color-icon-tomato);
+  fill: var(--color-icon-tomato);
   cursor: pointer;
 }
 
 .icon__todos_active {
-  color: var(--color-icon-tomato-active);
+  fill: var(--color-icon-tomato-active);
+}
+
+.todos__more-inc {
+  display: flex;
+  position: relative;
+}
+
+.todos__more-five-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

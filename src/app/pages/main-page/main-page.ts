@@ -20,7 +20,7 @@ export class MainPage {
 
   public dayTodo = this.state.dayTodo;
   public estimatedTime = this.state.estimatedTime;
-  public tasksAwaiting = this.state.tasksAwaiting;
   public timeSpent = this.state.timeSpent;
-  public completedTasks = this.state.completedTasks;
+  public completedTodos = this.state.complitedTodos;
+  public uncompletedTodos = this.state.ucompletedTodos;
 }

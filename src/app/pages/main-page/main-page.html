@@ -14,7 +14,7 @@
     </div>
     <div class="todos__wrapper">
       <p class="todos__value">
-        {{ tasksAwaiting() }}<span class="todos__minutes"></span>
+        {{ uncompletedTodos().length }}<span class="todos__minutes"></span>
       </p>
       <p class="todos__text">Задачи, ожидающие выполнения</p>
     </div>
@@ -26,7 +26,7 @@
     </div>
     <div class="todos__wrapper">
       <p class="todos__value">
-        {{ completedTasks() }}<span class="todos__minutes"></span>
+        {{ completedTodos().length }}<span class="todos__minutes"></span>
       </p>
       <p class="todos__text">Завершенные задачи</p>
     </div>

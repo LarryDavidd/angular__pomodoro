@@ -54,13 +54,21 @@ ul {
 :root {
   --color-secondary: #e74c3c;
   --color-focus-input: #e74c3c;
-  --color-icon-tomato: gray;
-  --color-icon-tomato-active: #e74c3c;
+  --color-icon-tomato: rgb(189, 188, 188);
+  --color-icon-tomato-active: #f77a6c;
   --color-bg-primary: #d3d3d3;
   --color-bg-second: #f1f0f5;
+  --color-button-inc-bg: #e74c3c;
+  --color-button-inc: #fff;
+  --color-button-hover: red;
+  --color-bg-modal: #f0b1b1;
 }
 
 .button {
   transition: all 0.3s ease-in;
   cursor: pointer;
+}
+
+.icon {
+  fill: var(--color-icon-tomato);
 }

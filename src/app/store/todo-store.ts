@@ -7,21 +7,20 @@ import {
   withState,
 } from '@ngrx/signals';
 
-interface Todo {
+export interface ITodo {
   idTodo: string;
   pomodoroValue: number;
   title: string;
   timeCreate: string;
   isComplete: boolean;
+  priority: 'No prio' | 'Low prio' | 'Medium prio' | 'High prio';
 }
 
-interface TodoState {
+export interface TodoState {
   dayTodo: string;
   estimatedTime: string;
-  tasksAwaiting: string;
   timeSpent: string;
-  completedTasks: string;
-  todos: Todo[];
+  todos: ITodo[];
   isLoading: boolean;
   error: undefined;
 }
@@ -29,9 +28,7 @@ interface TodoState {
 const initTodoState: TodoState = {
   dayTodo: '',
   estimatedTime: '',
-  tasksAwaiting: '',
   timeSpent: '',
-  completedTasks: '',
   todos: [],
   isLoading: false,
   error: undefined,
@@ -43,7 +40,7 @@ export const TodoStore = signalStore(
 
   withMethods((store) => ({
     addTodo({ title, pomodoro }: { title: string; pomodoro: number }): void {
-      const objectTodo: Todo = {
+      const objectTodo: ITodo = {
         idTodo: crypto.randomUUID(),
         title: title,
         pomodoroValue: pomodoro,
@@ -51,6 +48,7 @@ export const TodoStore = signalStore(
           new Date().getMonth() + 1
         }, ${new Date().getFullYear()}`,
         isComplete: false,
+        priority: 'No prio',
       };
       console.log(objectTodo, 'new');
       patchState(store, {
@@ -64,9 +62,7 @@ export const TodoStore = signalStore(
       const mockData: Partial<TodoState> = {
         dayTodo: 'Сегодня',
         estimatedTime: '0',
-        tasksAwaiting: '0',
         timeSpent: '0',
-        completedTasks: '0',
         isLoading: false,
       };
 
