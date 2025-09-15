@@ -125,6 +125,12 @@ export const TodoStore = signalStore(
         }),
       });
     },
+
+    todoDelete(idTodo: string): void {
+      patchState(store, {
+        todos: store.todos().filter((todo) => todo.idTodo !== idTodo),
+      });
+    },
   })),
 
   withComputed((store) => ({

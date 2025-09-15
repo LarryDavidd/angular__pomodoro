@@ -7,13 +7,13 @@ import {
   input,
 } from '@angular/core';
 import { ITodo, Priority, TodoStore } from '../../../store/todo-store';
-import { SlicePipe } from '@angular/common';
 import { PomodoroChangeValues } from '../../../components/pomodoro-change-values/pomodoro-change-values';
 import { FlagIcon } from '../../../icons/flag-icon/flag-icon';
+import { SliceTitlePipe } from '../../../pipes/slice-title-pipe';
 
 @Component({
   selector: 'app-todo-settings-modal',
-  imports: [SlicePipe, PomodoroChangeValues, FlagIcon],
+  imports: [PomodoroChangeValues, FlagIcon, SliceTitlePipe],
   templateUrl: './todo-settings-modal.html',
   styleUrl: './todo-settings-modal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,6 +69,11 @@ export class TodoSettingsModal {
 
   public setPriority(priority: Priority): void {
     this.state.todoChangePriority(this.todo().idTodo, priority);
+    this.close()();
+  }
+
+  public deleteTodoHandler() {
+    this.state.todoDelete(this.todo().idTodo);
     this.close()();
   }
 }

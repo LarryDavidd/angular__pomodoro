@@ -1,5 +1,5 @@
 <div class="settings__title-wrapper">
-  <p class="settings__title">{{ todo().title | slice : 0 : 8 }}...</p>
+  <p class="settings__title">{{ todo().title | sliceTitle }}</p>
 </div>
 <div class="settings__tomatos-wrapper">
   <p class="settings__text-tomatos">Ожидаемое количество томатов:</p>
@@ -18,5 +18,13 @@
       (click)="setPriority(priorities[i])"
     ></svg>
     }
+  </div>
+  <div class="settings__buttons-wrapper">
+    <button
+      (click)="deleteTodoHandler()"
+      class="button button__settings_delete"
+    >
+      Удалить
+    </button>
   </div>
 </div>
