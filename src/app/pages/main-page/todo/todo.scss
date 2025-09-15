@@ -4,9 +4,13 @@
   align-items: center;
   background-color: var(--color-bg-second);
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
   margin-bottom: 1rem;
+}
+
+.todos-link_active {
+  border: 1px solid var(--color-border-active-link);
 }
 
 .todos-link__todo-options {
@@ -19,11 +23,15 @@
   display: flex;
   width: 15px;
   height: 15px;
-  border: 0.5px solid gray;
+  border: 0.5px solid var(--color-todo-circle);
   border-radius: 50%;
 
   &_active {
-    background-color: green;
+    background-color: var(--color-todo-circle-bg);
+
+    .todos-link__icon {
+      color: var(--color-todo-link-icon);
+    }
   }
 }
 
@@ -32,13 +40,58 @@
 
   &_check {
     font-size: 15px;
-    color: white;
   }
 }
 
 .icon__todos {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  color: var(--color-icon-tomato-active);
+  width: 15px;
+  height: 15px;
+  fill: var(--color-icon-tomato-active);
+}
+
+.todos-link__settings-wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon__settings {
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+
+  &_active {
+    transform: rotate(90deg);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      fill: var(--color-button-hover);
+    }
+  }
+}
+
+.priority_no {
+  border: 1px solid var(--color-flag-no);
+  box-shadow: inset 0 0 10px
+    color-mix(in srgb, var(--color-flag-no) 20%, transparent);
+}
+
+.priority_low {
+  border: 1px solid var(--color-flag-low);
+  box-shadow: inset 0 0 10px
+    color-mix(in srgb, var(--color-flag-low) 20%, transparent);
+}
+
+.priority_medium {
+  border: 1px solid var(--color-flag-medium);
+  box-shadow: inset 0 0 10px
+    color-mix(in srgb, var(--color-flag-medium) 20%, transparent);
+}
+
+.priority_high {
+  border: 1px solid var(--color-flag-hard);
+  box-shadow: inset 0 0 10px
+    color-mix(in srgb, var(--color-flag-hard) 20%, transparent);
 }

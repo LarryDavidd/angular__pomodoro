@@ -29,7 +29,7 @@
 }
 
 .button__todos {
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
   padding-right: 1.3rem;
   border: none;
   border-radius: 10px;
@@ -51,4 +51,9 @@
   &_active::after {
     transform: translateY(-50%) rotate(180deg);
   }
+}
+
+.main-page__visible-todos-title {
+  margin: 0;
+  margin-bottom: 1rem;
 }

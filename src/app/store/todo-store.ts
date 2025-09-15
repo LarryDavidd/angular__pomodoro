@@ -7,13 +7,19 @@ import {
   withState,
 } from '@ngrx/signals';
 
+export type Priority =
+  | 'No priority'
+  | 'Low priority'
+  | 'Medium priority'
+  | 'High priority';
+
 export interface ITodo {
   idTodo: string;
   pomodoroValue: number;
   title: string;
   timeCreate: string;
   isComplete: boolean;
-  priority: 'No prio' | 'Low prio' | 'Medium prio' | 'High prio';
+  priority: Priority;
 }
 
 export interface TodoState {
@@ -48,7 +54,7 @@ export const TodoStore = signalStore(
           new Date().getMonth() + 1
         }, ${new Date().getFullYear()}`,
         isComplete: false,
-        priority: 'No prio',
+        priority: 'No priority',
       };
       console.log(objectTodo, 'new');
       patchState(store, {
@@ -78,6 +84,43 @@ export const TodoStore = signalStore(
               isComplete: !todo.isComplete,
             };
           }
+          return todo;
+        }),
+      });
+    },
+
+    todoChangePomodoroValue(idTodo: string, pomodoro: number): void {
+      patchState(store, {
+        todos: store.todos().map((todo) => {
+          if (todo.idTodo === idTodo) {
+            return {
+              ...todo,
+              pomodoroValue: pomodoro,
+            };
+          }
+
+          return todo;
+        }),
+      });
+    },
+
+    todoChangePriority(
+      idTodo: string,
+      priority:
+        | 'No priority'
+        | 'Low priority'
+        | 'Medium priority'
+        | 'High priority'
+    ): void {
+      patchState(store, {
+        todos: store.todos().map((todo) => {
+          if (todo.idTodo === idTodo) {
+            return {
+              ...todo,
+              priority: priority,
+            };
+          }
+
           return todo;
         }),
       });

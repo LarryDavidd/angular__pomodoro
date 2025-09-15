@@ -1,15 +1,23 @@
+/* eslint-disable unicorn/no-array-reverse */
+/* eslint-disable unicorn/consistent-function-scoping */
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
+  signal,
 } from '@angular/core';
 import { ITodo, TodoStore } from '../../../store/todo-store';
 import { MatIconModule } from '@angular/material/icon';
+import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
+import { NgClass } from '@angular/common';
+import { SettingIcon } from '../../../icons/settings-icon/settings-icon';
+import { TodoSettingsModal } from '../todo-settings-modal/todo-settings-modal';
 
 @Component({
   selector: 'app-todo',
-  imports: [MatIconModule],
+  imports: [MatIconModule, TomatoIcon, NgClass, SettingIcon, TodoSettingsModal],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class Todo {
   readonly state = inject(TodoStore);
   public todo = input.required<ITodo>();
+  public isModalSettingsOpen = signal(false);
 
   public todoCompleteHandler(idTodo: string): void {
     this.state.todoChangeComplete(idTodo);
@@ -62,4 +71,26 @@ export class Todo {
   public isNumberMoreFive(value: number): boolean {
     return value <= 5;
   }
+
+  public openModalSettings() {
+    this.isModalSettingsOpen.update((value) => !value);
+  }
+
+  public closeModal = () => {
+    this.isModalSettingsOpen.set(false);
+  };
+
+  public getBorderClass = computed(() => {
+    if (this.todo().isComplete) {
+      return `circle__todo`;
+    }
+
+    const transformText = this.todo()
+      .priority.split(' ')
+      .map((el) => `${el.toLowerCase()}`)
+      .reverse()
+      .join('_');
+
+    return `circle__todo ${transformText}`;
+  });
 }

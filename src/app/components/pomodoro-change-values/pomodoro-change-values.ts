@@ -1,37 +1,26 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  HostListener,
   inject,
   input,
-  output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MinusIcon } from '../../../icons/minus-icon/minus-icon';
-import { PlusIcon } from '../../../icons/plus-icon/plus-icon';
-import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
+import { TodoStore } from '../../store/todo-store';
+import { TomatoIcon } from '../../icons/tomato-icon/tomato-icon';
+import { MinusIcon } from '../../icons/minus-icon/minus-icon';
+import { PlusIcon } from '../../icons/plus-icon/plus-icon';
 
 @Component({
-  selector: 'app-todo-inc-modal',
-  imports: [MatIconModule, MinusIcon, PlusIcon, TomatoIcon],
-  templateUrl: './todo-inc-modal.html',
-  styleUrl: './todo-inc-modal.scss',
+  selector: 'app-pomodoro-change-values',
+  imports: [TomatoIcon, MinusIcon, PlusIcon],
+  templateUrl: './pomodoro-change-values.html',
+  styleUrl: './pomodoro-change-values.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoIncModal {
+export class PomodoroChangeValues {
+  readonly state = inject(TodoStore);
+
   public activeValueCount = input.required<number>();
-  public activeValueCountChange = output<number>();
-  public close = input.required<() => void>();
-
-  private el = inject(ElementRef);
-
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    if (!this.el.nativeElement.contains(event.target)) {
-      this.close()();
-    }
-  }
+  public activeTodoId = input.required<string>();
 
   public onInput(event: Event) {
     const input = event.target;
@@ -60,7 +49,7 @@ export class TodoIncModal {
       newValue = 0;
     }
 
-    this.activeValueCountChange.emit(newValue);
+    this.state.todoChangePomodoroValue(this.activeTodoId(), newValue);
   }
 
   public increaseValue() {

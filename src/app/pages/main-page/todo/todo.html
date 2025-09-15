@@ -1,8 +1,15 @@
-<li class="main-page__todos-link">
+<li
+  class="main-page__todos-link"
+  [ngClass]="{ 'todos-link_active': isModalSettingsOpen() }"
+>
   <div class="todos-link__todo-options">
-    <span (click)="todoCompleteHandler(todo().idTodo)" class="circle__todo">
+    <span
+      (click)="todoCompleteHandler(todo().idTodo)"
+      [class]="getBorderClass()"
+      [ngClass]="{ circle__todo_active: todo().isComplete }"
+    >
       @if(todo().isComplete) {
-      <mat-icon class="icon todos-link__icon todos-link__icon_check"
+      <mat-icon [class]="'icon todos-link__icon todos-link__icon_check'"
         >check</mat-icon
       >
       }
@@ -15,16 +22,30 @@
       <div>
         @if(isNumberMoreFive(todo().pomodoroValue)) { @for (item of
         createArray(todo().pomodoroValue); track $index) {
-        <mat-icon class="icon icon__todos">apple</mat-icon>
+        <svg tomato-icon class="icon icon__todos"></svg>
         } } @else {
         <div>
-          <mat-icon class="icon icon__todos">apple</mat-icon> 0 /
-          <mat-icon class="icon icon__todos">apple</mat-icon>
+          <svg tomato-icon class="icon icon__todos"></svg> 0 /
+          <svg tomato-icon class="icon icon__todos"></svg>
           {{ todo().pomodoroValue }}
         </div>
         }
       </div>
     </div>
   </div>
-  <span>{{ getFormattedDate(todo().timeCreate) }}</span>
+  <div class="todos-link__settings-wrapper">
+    <svg
+      setting-icon
+      class="icon icon__settings"
+      [ngClass]="{ icon__settings_active: isModalSettingsOpen() }"
+      (click)="openModalSettings()"
+    ></svg>
+    <span>{{ getFormattedDate(todo().timeCreate) }}</span>
+    @if(isModalSettingsOpen()) {
+    <app-todo-settings-modal
+      [todo]="todo()"
+      [close]="closeModal"
+    ></app-todo-settings-modal>
+    }
+  </div>
 </li>

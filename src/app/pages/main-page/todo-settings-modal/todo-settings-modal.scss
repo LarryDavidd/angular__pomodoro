@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: var(--color-bg-modal);
+  top: -93%;
+  right: 102%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+}
+
+.settings__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings__tomatos-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings__title {
+  margin: 0;
+}
+
+.settings__text-tomatos,
+.settings__text-priority {
+  margin: 0;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.icon__priority-flag {
+  width: 30px;
+  height: 30px;
+}
+
+.priority_no {
+  fill: var(--color-flag-no);
+}
+
+.priority_low {
+  fill: var(--color-flag-low);
+}
+
+.priority_medium {
+  fill: var(--color-flag-medium);
+}
+
+.priority_hard {
+  fill: var(--color-flag-hard);
+}

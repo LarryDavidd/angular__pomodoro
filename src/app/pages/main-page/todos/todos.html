@@ -7,7 +7,7 @@
   </div>
   } @else {
   <div>
-    <p>Задачи • (количество помидор)</p>
+    <p>Задачи • (помидоры * время таймера)</p>
   </div>
 
   <ul class="main-page__todos-list">
@@ -26,7 +26,7 @@
     </button>
   </div>
   @if(isVisibleCompletedTodos()) { @if(isEmptyCompletedTodos()) {
-  <p>Сегодня</p>
+  <p class="main-page__visible-todos-title">Сегодня</p>
   <ul class="main-page__todos-list">
     @for (todo of completedTodos(); track $index) {
     <app-todo [todo]="todo"></app-todo>

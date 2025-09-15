@@ -1,0 +1,22 @@
+<div class="settings__title-wrapper">
+  <p class="settings__title">{{ todo().title | slice : 0 : 8 }}...</p>
+</div>
+<div class="settings__tomatos-wrapper">
+  <p class="settings__text-tomatos">Ожидаемое количество томатов:</p>
+  <app-pomodoro-change-values
+    [activeValueCount]="todo().pomodoroValue"
+    [activeTodoId]="todo().idTodo"
+  ></app-pomodoro-change-values>
+</div>
+<div>
+  <p class="settings__text-priority">Приоритет</p>
+  <div class="settings__priority-flags">
+    @for (item of fourArray; track $index; let i = $index) {
+    <svg
+      flag-icon
+      [class]="getFlagClass(i)"
+      (click)="setPriority(priorities[i])"
+    ></svg>
+    }
+  </div>
+</div>

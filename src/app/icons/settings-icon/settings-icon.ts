@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'svg[tomato-icon]',
+  selector: 'svg[setting-icon]',
   imports: [],
-  templateUrl: './tomato.svg',
+  templateUrl: './settings.svg',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     width: '17',
@@ -12,4 +12,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     xmlns: 'http://www.w3.org/2000/svg',
   },
 })
-export class TomatoIcon {}
+export class SettingIcon {}
