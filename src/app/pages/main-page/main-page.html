@@ -2,7 +2,12 @@
   <div class="main-page__header">
     <h2>{{ dayTodo() }}</h2>
     <div class="main-page__icons-wrapper">
-      <mat-icon>sort</mat-icon>
+      <mat-icon class="icon icon__sort" (click)="openSortModalHandler()"
+        >sort</mat-icon
+      >
+      @if(isOpenSortModal()) {
+      <app-sort-modal [close]="closeModal"></app-sort-modal>
+      }
     </div>
   </div>
   <div class="main-page__todos-statistics">

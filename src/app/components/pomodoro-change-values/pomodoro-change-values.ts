@@ -17,7 +17,7 @@ import { PlusIcon } from '../../icons/plus-icon/plus-icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PomodoroChangeValues {
-  readonly state = inject(TodoStore);
+  readonly store = inject(TodoStore);
 
   public activeValueCount = input.required<number>();
   public activeTodoId = input.required<string>();
@@ -49,7 +49,7 @@ export class PomodoroChangeValues {
       newValue = 0;
     }
 
-    this.state.todoChangePomodoroValue(this.activeTodoId(), newValue);
+    this.store.todoChangePomodoroValue(this.activeTodoId(), newValue);
   }
 
   public increaseValue() {

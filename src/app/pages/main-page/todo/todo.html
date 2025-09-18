@@ -9,14 +9,17 @@
       [ngClass]="{ circle__todo_active: todo().isComplete }"
     >
       @if(todo().isComplete) {
-      <mat-icon [class]="'icon todos-link__icon todos-link__icon_check'"
+      <mat-icon class="icon todos-link__icon todos-link__icon_check"
         >check</mat-icon
       >
       }
     </span>
     <mat-icon class="icon todos-link__icon">play_circle</mat-icon>
     <div>
-      <span class="todos-link__title">
+      <span
+        class="todos-link__title"
+        [ngClass]="{ 'todos-link__title_active': todo().isComplete }"
+      >
         {{ todo().title }}
       </span>
       <div>
@@ -40,7 +43,9 @@
       [ngClass]="{ icon__settings_active: isModalSettingsOpen() }"
       (click)="openModalSettings()"
     ></svg>
-    <span>{{ getFormattedDate(todo().timeCreate) }}</span>
+    <span [ngClass]="{ overdue_text: isOverdue() }">{{
+      getFormattedDate(todo().timeCreate)
+    }}</span>
     @if(isModalSettingsOpen()) {
     <app-todo-settings-modal
       [todo]="todo()"

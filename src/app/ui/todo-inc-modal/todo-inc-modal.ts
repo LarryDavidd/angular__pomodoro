@@ -8,9 +8,9 @@ import {
   output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MinusIcon } from '../../../icons/minus-icon/minus-icon';
-import { PlusIcon } from '../../../icons/plus-icon/plus-icon';
-import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
+import { MinusIcon } from '../../icons/minus-icon/minus-icon';
+import { PlusIcon } from '../../icons/plus-icon/plus-icon';
+import { TomatoIcon } from '../../icons/tomato-icon/tomato-icon';
 
 @Component({
   selector: 'app-todo-inc-modal',

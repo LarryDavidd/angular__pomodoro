@@ -11,6 +11,10 @@
   padding: 0 0.5rem;
 }
 
+.main-page__icons-wrapper {
+  position: relative;
+}
+
 .main-page__header {
   display: flex;
   justify-content: space-between;
@@ -46,4 +50,9 @@
 .todos__text,
 .todos__minutes {
   font-size: 0.8rem;
+}
+
+.icon__sort:hover {
+  color: var(--color-button-hover);
+  cursor: pointer;
 }

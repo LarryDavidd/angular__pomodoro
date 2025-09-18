@@ -5,17 +5,44 @@
     <p>Нет задач</p>
     <p>Кликните в поле ввода выше, чтобы добавить задачу</p>
   </div>
-  } @else {
-  <div>
-    <p>Задачи • (помидоры * время таймера)</p>
-  </div>
+  } @else { @if(isPriorityOrder()) { @if(isEmptyhighPriorityTodos()) {
+  <ul class="main-page__todos-list">
+    <p>Высокий приоритет • (помидоры * время таймера)</p>
+    @for (todo of highPriorityTodos(); track todo.idTodo) {
+    <app-todo [todo]="todo"></app-todo>
+    }
+  </ul>
+  } @if(isEmptymediumPriorityTodos()) {
+  <ul class="main-page__todos-list">
+    <p>Средний приоритет • (помидоры * время таймера)</p>
+    @for (todo of mediumPriorityTodos(); track todo.idTodo) {
+    <app-todo [todo]="todo"></app-todo>
+    }
+  </ul>
+  } @if(isEmptylowPriorityTodos()) {
+  <ul class="main-page__todos-list">
+    <p>Низкий приоритет • (помидоры * время таймера)</p>
+    @for (todo of lowPriorityTodos(); track todo.idTodo) {
+    <app-todo [todo]="todo"></app-todo>
+    }
+  </ul>
+  } @if(isEmptynoPriorityTodos()) {
+  <ul class="main-page__todos-list">
+    <p>Нет приоритета • (помидоры * время таймера)</p>
+    @for (todo of noPriorityTodos(); track todo.idTodo) {
+    <app-todo [todo]="todo"></app-todo>
+    }
+  </ul>
+  } } @else { @if(isEmptyUcompletedTodos()) {
+  <p>Задачи • (помидоры * время таймера)</p>
+  }
 
   <ul class="main-page__todos-list">
     @for (todo of ucompletedTodos(); track todo.idTodo) {
     <app-todo [todo]="todo"></app-todo>
     }
   </ul>
-  }
+  } }
   <div class="main-page__button-wrapper">
     <button
       (click)="showCompletedTodos()"

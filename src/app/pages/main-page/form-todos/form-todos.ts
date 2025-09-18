@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import { isEmptyValidate } from '../../../utils/is-empty-validate';
 import { TodoStore } from '../../../store/todo-store';
-import { TodoIncModal } from '../todo-inc-modal/todo-inc-modal';
+import { TodoIncModal } from '../../../ui/todo-inc-modal/todo-inc-modal';
 import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
 
 @Component({
@@ -26,7 +26,7 @@ import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormTodos {
-  readonly state = inject(TodoStore);
+  readonly store = inject(TodoStore);
   public fiveArray = Array.from({ length: 5 });
   public activeValueCount = signal(0);
   public openTodoInc = signal(false);
@@ -60,7 +60,7 @@ export class FormTodos {
 
     const { title } = form.value;
 
-    this.state.addTodo({
+    this.store.addTodo({
       title: title!,
       pomodoro: this.activeValueCount(),
     });

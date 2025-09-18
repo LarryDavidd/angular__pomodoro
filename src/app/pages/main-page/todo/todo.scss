@@ -95,3 +95,11 @@
   box-shadow: inset 0 0 10px
     color-mix(in srgb, var(--color-flag-hard) 20%, transparent);
 }
+
+.todos-link__title_active {
+  text-decoration: line-through;
+}
+
+.overdue_text {
+  color: var(--color-overdue-text);
+}

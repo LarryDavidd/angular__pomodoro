@@ -1,0 +1,39 @@
+:host {
+  position: absolute;
+  right: 0%;
+  top: 100%;
+  width: max-content;
+}
+
+.sort-modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  background-color: var(--color-bg-modal);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px var(--box-shadow-color);
+}
+
+.button__sort-modal {
+  display: inline-flex;
+  border: none;
+  padding: 0.2rem 1rem;
+  text-align: start;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: var(--color-button-hover-modal);
+  }
+}
+
+.sort-modal__icon {
+  width: 12px;
+  height: 12px;
+}
+
+.icon__sort {
+  color: var(--color-secondary);
+  font-size: 15px;
+}

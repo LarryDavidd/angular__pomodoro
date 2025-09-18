@@ -13,6 +13,8 @@ export type Priority =
   | 'Medium priority'
   | 'High priority';
 
+export type SortTodos = 'project_order' | 'priority_order';
+
 export interface ITodo {
   idTodo: string;
   pomodoroValue: number;
@@ -29,6 +31,7 @@ export interface TodoState {
   todos: ITodo[];
   isLoading: boolean;
   error: undefined;
+  sort: SortTodos;
 }
 
 const initTodoState: TodoState = {
@@ -38,6 +41,7 @@ const initTodoState: TodoState = {
   todos: [],
   isLoading: false,
   error: undefined,
+  sort: 'project_order',
 };
 
 export const TodoStore = signalStore(
@@ -73,6 +77,27 @@ export const TodoStore = signalStore(
       };
 
       patchState(store, mockData);
+    },
+
+    changeTodosSort(sort: SortTodos): void {
+      patchState(store, {
+        sort: sort,
+      });
+    },
+
+    changeTodoDate(idTodo: string, date: string): void {
+      patchState(store, {
+        todos: store.todos().map((todo) => {
+          if (idTodo === todo.idTodo) {
+            return {
+              ...todo,
+              timeCreate: date,
+            };
+          }
+
+          return todo;
+        }),
+      });
     },
 
     todoChangeComplete(idTodo: string): void {
@@ -143,5 +168,33 @@ export const TodoStore = signalStore(
     ucompletedTodos: computed(() =>
       store.todos().filter((todo) => !todo.isComplete)
     ),
+
+    highPriorityTodos: computed(() =>
+      store
+        .todos()
+        .filter((todo) => !todo.isComplete && todo.priority === 'High priority')
+    ),
+
+    mediumPriorityTodos: computed(() =>
+      store
+        .todos()
+        .filter(
+          (todo) => !todo.isComplete && todo.priority === 'Medium priority'
+        )
+    ),
+
+    lowPriorityTodos: computed(() =>
+      store
+        .todos()
+        .filter((todo) => !todo.isComplete && todo.priority === 'Low priority')
+    ),
+
+    noPriorityTodos: computed(() =>
+      store
+        .todos()
+        .filter((todo) => !todo.isComplete && todo.priority === 'No priority')
+    ),
+
+    sortOrder: computed(() => store.sort),
   }))
 );

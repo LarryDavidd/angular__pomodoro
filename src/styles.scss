@@ -60,8 +60,12 @@ ul {
   --color-bg-second: #f1f0f5;
   --color-button-inc-bg: #e74c3c;
   --color-button-inc: #fff;
+  --color-button-bg-active: gray;
+  --color-button-text-active: white;
   --color-button-hover: red;
-  --color-bg-modal: #f0b1b1;
+  --color-bg-button-delete: #e74c3c;
+  --color-button-delete: white;
+  --color-bg-modal: #f1f0f5;
   --color-bg-pomodoro-change: white;
   --color-border-pomodoro-change: gray;
   --color-border-active-link: #e74c3c;
@@ -72,6 +76,17 @@ ul {
   --color-todo-link-icon: white;
   --color-todo-circle: gray;
   --color-todo-circle-bg: green;
+  --color-button-hover-modal: rgb(219, 219, 219);
+  --color-underlining-border: #c5c5c5;
+  --color-overdue-text: red;
+  --box-shadow-color: rgb(167, 167, 167);
+
+  @include mat.datepicker-overrides(
+    (
+      calendar-body-label-text-size: 0,
+      calendar-date-today-outline-color: var(--color-secondary),
+    )
+  );
 }
 
 .button {
@@ -81,4 +96,5 @@ ul {
 
 .icon {
   fill: var(--color-icon-tomato);
+  transition: all 0.3s ease-in;
 }
