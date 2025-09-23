@@ -1,0 +1,65 @@
+<div class="settings__title-wrapper">
+  <p class="settings__title">{{ todo().title | sliceTitle }}</p>
+</div>
+<div class="settings__tomatos-wrapper">
+  <p class="settings__text-tomatos">Ожидаемое количество томатов:</p>
+  <app-pomodoro-change-values
+    [activeValueCount]="todo().pomodoroValue"
+    [activeTodoId]="todo().idTodo"
+  ></app-pomodoro-change-values>
+</div>
+<div>
+  <p class="settings__text-priority">Приоритет</p>
+  <div class="settings__priority-flags">
+    @for (item of fourArray; track $index; let i = $index) {
+    <svg
+      flag-icon
+      [class]="getFlagClass(i)"
+      (click)="setPriority(priorities[i])"
+    ></svg>
+    }
+  </div>
+  <div class="settings__buttons-wrapper">
+    <button
+      class="button button__settings"
+      [ngClass]="{ button__settings_active: isDayToday() }"
+      (click)="changeDateButtonHandler('today')"
+    >
+      Сегодня
+    </button>
+    <button
+      class="button button__settings"
+      [ngClass]="{ button__settings_active: isDayTomorrow() }"
+      (click)="changeDateButtonHandler('tomorrow')"
+    >
+      Завтра
+    </button>
+    <div class="settings__buttons__date">
+      <button
+        (click)="toggleCalendar()"
+        class="button button__settings button__settings_date"
+      >
+        <mat-icon class="icon icon__settings icon__settings_arrow"
+          >chevron_left</mat-icon
+        >
+        Задать дату выполнения
+      </button>
+      <div class="settings__calendar-wrapper">
+        @if(isCalendarOpen()) {
+        <mat-calendar
+          [selected]="createdDate()"
+          (selectedChange)="onDateChange($event)"
+        ></mat-calendar>
+        }
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      (click)="deleteTodoHandler()"
+      class="button button__settings button__settings_delete"
+    >
+      Удалить
+    </button>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+:host {
+  display: block;
+  background-color: var(--color-bg-primary);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1200px;
+  padding: 0 0.5rem;
+}
+
+.main-page__icons-wrapper {
+  position: relative;
+}
+
+.main-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-page__todos-statistics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: var(--color-bg-second);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 0;
+}
+
+.todos__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  & > p {
+    margin: 0;
+  }
+}
+
+.todos__value {
+  font-size: 1.8rem;
+  color: var(--color-secondary);
+  min-height: 2rem;
+}
+
+.todos__text,
+.todos__minutes {
+  font-size: 0.8rem;
+}
+
+.icon__sort:hover {
+  color: var(--color-button-hover);
+  cursor: pointer;
+}

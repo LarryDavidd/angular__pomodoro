@@ -1,0 +1,25 @@
+<div class="sort-modal__buttons">
+  <button
+    class="button button__sort-modal"
+    [ngClass]="{ 'button__sort-modal_active': isActive('project_order') }"
+    (click)="selectSort('project_order')"
+  >
+    По порядку проекта @if(isActive('project_order') ) {
+    <div class="sort-modal__icon">
+      <mat-icon class="icon icon__sort">check</mat-icon>
+    </div>
+    }
+  </button>
+
+  <button
+    class="button button__sort-modal"
+    [ngClass]="{ 'button__sort-modal_active': isActive('priority_order') }"
+    (click)="selectSort('priority_order')"
+  >
+    По порядку приоритета @if(isActive('priority_order')) {
+    <div class="sort-modal__icon">
+      <mat-icon class="icon icon__sort">check</mat-icon>
+    </div>
+    }
+  </button>
+</div>

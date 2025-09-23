@@ -1,0 +1,126 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: var(--color-bg-modal);
+  top: -93%;
+  right: 102%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  gap: 0.5rem;
+  box-shadow: 0px 0px 8px var(--box-shadow-color);
+  z-index: 999;
+}
+
+.settings__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings__tomatos-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-underlining-border);
+}
+
+.settings__title {
+  margin: 0;
+}
+
+.settings__text-tomatos,
+.settings__text-priority {
+  margin: 0;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.icon__priority-flag {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.priority_no {
+  fill: var(--color-flag-no);
+}
+
+.priority_low {
+  fill: var(--color-flag-low);
+}
+
+.priority_medium {
+  fill: var(--color-flag-medium);
+}
+
+.priority_high {
+  fill: var(--color-flag-hard);
+}
+
+.settings__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  border-bottom: 1px solid var(--color-underlining-border);
+}
+
+.button__settings {
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 8px;
+
+  &_date {
+    display: flex;
+    width: max-content;
+    align-items: center;
+  }
+
+  &:hover {
+    background-color: var(--color-button-hover-modal);
+  }
+}
+
+.icon__settings {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon__priority-flag_active {
+  background-color: #c9c9c9;
+  pointer-events: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.settings__buttons__date {
+  position: relative;
+}
+
+.settings__calendar-wrapper {
+  position: absolute;
+  top: 0;
+  left: -106%;
+  border: none;
+  border-radius: 10px;
+
+  background-color: var(--color-bg-modal);
+  box-shadow: 0px 0px 8px var(--box-shadow-color);
+}
+
+.button__settings_delete {
+  color: var(--color-button-delete);
+  background-color: var(--color-bg-button-delete);
+}
+
+.button__settings_active {
+  background-color: var(--color-button-bg-active);
+  color: var(--color-button-text-active);
+  pointer-events: none;
+}
