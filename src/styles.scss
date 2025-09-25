@@ -56,8 +56,10 @@ ul {
   --color-focus-input: #e74c3c;
   --color-icon-tomato: rgb(189, 188, 188);
   --color-icon-tomato-active: #f77a6c;
+  --color-icon-tomato-complete: red;
   --color-bg-primary: #d3d3d3;
   --color-bg-second: #f1f0f5;
+  --color-bg-timer: white;
   --color-button-inc-bg: #e74c3c;
   --color-button-inc: #fff;
   --color-button-bg-active: gray;
@@ -79,6 +81,11 @@ ul {
   --color-button-hover-modal: rgb(219, 219, 219);
   --color-underlining-border: #c5c5c5;
   --color-overdue-text: red;
+  --color-canvas-button-rest: rgba(62, 135, 243, 0.9);
+  --color-canvas-button-text: white;
+  --color-canvas-button-text-black: black;
+  --color-canvas-button-focus: #e74c3c;
+  --color-canvas-button-back-border: white;
   --box-shadow-color: rgb(167, 167, 167);
 
   @include mat.datepicker-overrides(

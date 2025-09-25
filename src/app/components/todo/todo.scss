@@ -2,21 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   background-color: var(--color-bg-second);
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
   border-radius: 10px;
-  margin-bottom: 1rem;
 }
 
 .todos-link_active {
   border: 1px solid var(--color-border-active-link);
 }
 
+.todos-link_active-timer {
+  cursor: pointer;
+}
+
 .todos-link__todo-options {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .circle__todo {
@@ -25,6 +31,7 @@
   height: 15px;
   border: 0.5px solid var(--color-todo-circle);
   border-radius: 50%;
+  cursor: pointer;
 
   &_active {
     background-color: var(--color-todo-circle-bg);
@@ -55,6 +62,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .icon__settings {
@@ -96,10 +104,39 @@
     color-mix(in srgb, var(--color-flag-hard) 20%, transparent);
 }
 
+.todo-link-wrapper-pomo {
+  flex: 1;
+  min-width: 0;
+}
+
+.todos-link__title {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 .todos-link__title_active {
   text-decoration: line-through;
 }
 
 .overdue_text {
   color: var(--color-overdue-text);
+}
+
+.todos-link__icon_nav-timer {
+  cursor: pointer;
+}
+
+.todos-link__icon_nav-timer {
+  @media (any-hover: hover) {
+    &:hover {
+      fill: var(--color-button-hover);
+    }
+  }
+}
+
+.icon__todos_complete {
+  fill: var(--color-icon-tomato-complete);
 }
