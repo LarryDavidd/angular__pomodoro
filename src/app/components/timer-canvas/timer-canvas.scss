@@ -27,3 +27,9 @@
   border-radius: 15px;
   gap: 1rem;
 }
+
+.button__canvas_inactive {
+  text-decoration: line-through;
+  background-color: var(--color-canvas-button-innactive);
+  pointer-events: none;
+}

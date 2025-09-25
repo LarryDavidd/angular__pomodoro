@@ -86,6 +86,7 @@ ul {
   --color-canvas-button-text-black: black;
   --color-canvas-button-focus: #e74c3c;
   --color-canvas-button-back-border: white;
+  --color-canvas-button-innactive: #d3d3d3;
   --box-shadow-color: rgb(167, 167, 167);
 
   @include mat.datepicker-overrides(

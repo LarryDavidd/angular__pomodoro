@@ -13,10 +13,11 @@ import {
 } from '@angular/core';
 import { TodoStore } from '../../store/todo-store';
 import { convertTimeToSeconds } from '../../utils/convert-time-to-sec';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-timer-canvas',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './timer-canvas.html',
   styleUrl: './timer-canvas.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -105,6 +106,10 @@ export class TimerCanvas implements AfterViewInit {
       .toString()
       .padStart(2, '0')}`;
   });
+
+  public selectedTodoIsComplete = computed(
+    () => this.selectedTodo()?.isComplete ?? false
+  );
 
   public startHandler(): void {
     if (!this.isRunning() && this.remainingSeconds() > 0) {

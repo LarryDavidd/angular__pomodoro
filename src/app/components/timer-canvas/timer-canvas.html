@@ -27,7 +27,11 @@
   } @else {
   <div class="canvas__wrapper-buttons">
     @if(!this.isRunning() ) {
-    <button class="button button__canvas" (click)="startHandler()">
+    <button
+      class="button button__canvas"
+      [ngClass]="{ button__canvas_inactive: selectedTodoIsComplete() }"
+      (click)="startHandler()"
+    >
       Начать фокусировку
     </button>
     } @else {
