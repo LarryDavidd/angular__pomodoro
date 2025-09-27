@@ -1,6 +1,8 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -9,27 +11,39 @@ import { TodoStore } from '../../store/todo-store';
 import { Todos } from './todos/todos';
 import { FormTodos } from './form-todos/form-todos';
 import { SortModal } from '../../ui/sort-modal/sort-modal';
+import { CapitalizeFirstPipe } from '../../pipes/capitalize-first-pipe';
 
 @Component({
   selector: 'app-main-page',
-  imports: [MatIconModule, Todos, FormTodos, SortModal],
+  imports: [MatIconModule, Todos, FormTodos, SortModal, CapitalizeFirstPipe],
   templateUrl: './main-page.html',
   styleUrl: './main-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPage {
-  readonly state = inject(TodoStore);
+  readonly store = inject(TodoStore);
   public isOpenSortModal = signal(false);
 
   constructor() {
-    this.state.loadPageTodo();
+    this.store.loadPageTodo();
   }
 
-  public dayTodo = this.state.dayTodo;
-  public estimatedTime = this.state.estimatedTime;
-  public timeSpent = this.state.timeSpent;
-  public completedTodos = this.state.complitedTodos;
-  public uncompletedTodos = this.state.ucompletedTodos;
+  public completedTodos = this.store.completedTodos;
+  public uncompletedTodos = this.store.uncompletedTodos;
+  public selectedPeriod = this.store.selectedPeriod;
+
+  public estimatedTime = computed(() => {
+    const totalPomodoros = this.uncompletedTodos().reduce(
+      (acc, curr) => acc + curr.pomodoroValue,
+      0
+    );
+
+    const [minutes] = this.store.timerPomodoro().split(':').map(Number);
+
+    return totalPomodoros * minutes;
+  });
+
+  public timeSpent = this.store.totalTimeSpent;
 
   public openSortModalHandler(): void {
     this.isOpenSortModal.update((value) => !value);

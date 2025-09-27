@@ -16,6 +16,12 @@
   margin: 1rem 0;
 }
 
+.main-page__todos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .circle {
   width: 100px;
   height: 100px;
