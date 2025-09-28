@@ -1,0 +1,49 @@
+<form
+  class="todos__form"
+  [formGroup]="addTodoForm"
+  (submit)="formSubmitHandler()"
+>
+  <mat-icon
+    (click)="formSubmitHandler()"
+    class="icon icon__todos icon__todos_add"
+    >add</mat-icon
+  >
+  <input
+    placeholder="Добавить задачу в 'Задачи', Нажмите клавишу [Enter], чтобы сохранить"
+    class="todos__input"
+    formControlName="title"
+  />
+  <div class="todos__tomato-wrapper">
+    @if(activeValueMoreFive()) {
+    <div class="todos__more-five-wrapper">
+      <div>
+        <svg tomato-icon class="icon icon__todos icon__todos_active"></svg>
+      </div>
+      <p>
+        {{ activeValueCount() }}
+      </p>
+    </div>
+
+    } @else { @for (item of fiveArray; track $index) {
+    <svg
+      tomato-icon
+      class="icon icon__todos"
+      [class.icon__todos_active]="isIconActive($index)"
+      (mousedown)="addTomatoHandler($index, $event)"
+    ></svg>
+    } }
+    <div class="todos__more-inc">
+      <mat-icon
+        (click)="openModalInc()"
+        class="icon icon__todos icon__todos_right"
+        >chevron_right</mat-icon
+      >
+      @if(openTodoInc()) {
+      <app-todo-inc-modal
+        [(activeValueCount)]="activeValueCount"
+        [close]="closeModal"
+      ></app-todo-inc-modal>
+      }
+    </div>
+  </div>
+</form>

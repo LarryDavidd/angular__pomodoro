@@ -1,0 +1,114 @@
+<mat-card
+  appearance="outlined"
+  class="auth-card"
+>
+  <mat-card-content>
+    <h2 class="auth-card__title">Sign Up</h2>
+
+    <form
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="auth-card__block">
+        <label for="email">Email:</label>
+        <input
+          class="auth-card__input"
+          type="text"
+          id="email"
+          name="email"
+          formControlName="email"
+          [ngClass]="{
+            invalid: signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid
+          }"
+          required
+        />
+        <p
+          class="error"
+          *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.['invalidEmail'] && signUpForm.get('email')?.value !== ''"
+        >
+          Incorrect email
+        </p>
+        <p
+          class="error"
+          *ngIf="signUpForm.get('email')?.hasError('emailExists')"
+        >
+          User already exists
+        </p>
+        <p
+          class="error"
+          *ngIf="signUpForm.get('email')?.errors?.['required'] && isFirstClick && signUpForm.get('email')?.value === ''"
+        >
+          Email is required
+        </p>
+      </div>
+
+      <div class="auth-card__block">
+        <label for="password">Password:</label>
+        <input
+          class="auth-card__input"
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+          [ngClass]="{
+            invalid: signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid
+          }"
+          required
+        />
+        <p
+          class="error"
+          *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['minlength']"
+        >
+          Password must be at least 8 characters long
+        </p>
+        <p
+          class="error"
+          *ngIf="signUpForm.get('password')?.errors?.['required'] && isFirstClick && signUpForm.get('password')?.value === ''"
+        >
+          Password is required
+        </p>
+      </div>
+
+      <div class="auth-card__block">
+        <label for="password">Repeat Password:</label>
+        <input
+          class="auth-card__input"
+          type="password"
+          id="repeat-password"
+          name="repeat-password"
+          formControlName="repeatPassword"
+          [ngClass]="{
+            invalid: signUpForm.get('repeatPassword')?.touched && signUpForm.get('repeatPassword')?.invalid
+          }"
+          required
+        />
+        <p
+          class="error"
+          *ngIf="signUpForm.get('repeatPassword')?.touched && signUpForm.get('password')?.touched && signUpForm.hasError('passwordMismatch')"
+        >
+          Passwords do not match
+        </p>
+      </div>
+
+      <div class="auth-card__wrapper">
+        <button
+          class="button button-wide"
+          mat-flat-button
+          extended
+          type="submit"
+          [disabled]="(isFirstClick && signUpForm.invalid) || isLoading || (isSubmitDisabled && signUpForm.invalid)"
+        >
+          Register
+        </button>
+        <a
+          class="button"
+          mat-button
+          type="button"
+          href="/signin"
+        >
+          Sign In
+        </a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

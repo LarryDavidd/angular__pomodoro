@@ -1,0 +1,74 @@
+<li
+  class="main-page__todos-link"
+  [ngClass]="{
+    'todos-link_active': isModalSettingsOpen() || todoIsActive(),
+    'todos-link_active-timer': !showDate()
+  }"
+  (click)="changeSelectedId()"
+>
+  <div class="todos-link__todo-options">
+    <span
+      (click)="todoCompleteHandler(todo().idTodo)"
+      [class]="getBorderClass()"
+      [ngClass]="{ circle__todo_active: todo().isComplete }"
+    >
+      @if(todo().isComplete) {
+      <mat-icon class="icon todos-link__icon todos-link__icon_check"
+        >check</mat-icon
+      >
+      }
+    </span>
+    @if(showTimerNav()) {
+    <mat-icon
+      class="icon todos-link__icon todos-link__icon_nav-timer"
+      (click)="navigateToTimer()"
+      >play_circle</mat-icon
+    >
+    }
+
+    <div class="todo-link-wrapper-pomo">
+      <span
+        class="todos-link__title"
+        [ngClass]="{ 'todos-link__title_active': todo().isComplete }"
+      >
+        {{ todo().title }}
+      </span>
+      <div>
+        @if(isNumberMoreFive(todo().pomodoroValue)) { @for (item of
+        getPomodoroDisplay(); track $index) {
+        <svg
+          tomato-icon
+          class="icon icon__todos"
+          [class.icon__todos_complete]="item === 1"
+        ></svg>
+        } } @else {
+        <div>
+          <svg tomato-icon class="icon icon__todos icon__todos_complete"></svg>
+          {{ todo().pomodoroValueComplete }} /
+          <svg tomato-icon class="icon icon__todos"></svg>
+          {{ todo().pomodoroValue }}
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="todos-link__settings-wrapper">
+    @if(showSettings()) {
+    <svg
+      setting-icon
+      class="icon icon__settings"
+      [ngClass]="{ icon__settings_active: isModalSettingsOpen() }"
+      (click)="openModalSettings()"
+    ></svg>
+    } @if(showDate()) {
+    <span [ngClass]="{ overdue_text: isOverdue() }">{{
+      getFormattedDate(todo().timeCreate)
+    }}</span>
+    } @if(isModalSettingsOpen()) {
+    <app-todo-settings-modal
+      [todo]="todo()"
+      [close]="closeModal"
+    ></app-todo-settings-modal>
+    }
+  </div>
+</li>

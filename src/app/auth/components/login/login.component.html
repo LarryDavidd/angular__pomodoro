@@ -1,0 +1,94 @@
+<mat-card
+  appearance="outlined"
+  class="auth-card"
+>
+  <mat-card-content>
+    <h2 class="auth-card__title">Sign In</h2>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="auth-card__block">
+        <label for="email">Email:</label>
+        <input
+          class="auth-card__input"
+          type="text"
+          id="email"
+          name="email"
+          formControlName="email"
+          [ngClass]="{
+            invalid: loginForm.get('email')?.touched && loginForm.get('email')?.invalid
+          }"
+          required
+        />
+        <p
+          class="error"
+          *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['invalidEmail'] && loginForm.get('email')?.value !== ''"
+        >
+          Incorrect email
+        </p>
+        <p
+          class="error"
+          *ngIf="loginForm.get('email')?.hasError('incorrect')"
+        >
+          Incorrect email or password
+        </p>
+        <p
+          class="error"
+          *ngIf="loginForm.get('email')?.errors?.['required'] && isFirstClick && loginForm.get('email')?.value === ''"
+        >
+          Email is required
+        </p>
+      </div>
+
+      <div class="auth-card__block">
+        <label for="password">Password:</label>
+        <input
+          class="auth-card__input"
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+          [ngClass]="{
+            invalid: loginForm.get('password')?.touched && loginForm.get('password')?.invalid
+          }"
+          required
+        />
+
+        <p
+          class="error"
+          *ngIf="loginForm.get('password')?.errors?.['required'] && isFirstClick && loginForm.get('password')?.value === ''"
+        >
+          Password is required
+        </p>
+        <p
+          class="error"
+          *ngIf="loginForm.get('password')?.hasError('incorrect')"
+        >
+          Incorrect email or password
+        </p>
+      </div>
+
+      <div class="auth-card__wrapper">
+        <button
+          class="button button-wide"
+          mat-flat-button
+          extended
+          type="submit"
+          [disabled]="(isFirstClick && loginForm.invalid) || isLoading || (isSubmitDisabled && loginForm.invalid)"
+        >
+          Sign In
+        </button>
+        <a
+          class="button"
+          mat-button
+          type="button"
+          href="/signup"
+        >
+          Sign Up
+        </a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

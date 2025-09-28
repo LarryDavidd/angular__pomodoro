@@ -1,0 +1,16 @@
+<button type="button" class="button button__todo-inc" (click)="decreaseValue()">
+  <svg minus-icon></svg>
+</button>
+<div class="todo-inc__icon-wrapper">
+  <svg tomato-icon class="icon__todos_active"></svg>
+</div>
+
+<input
+  [value]="activeValueCount()"
+  class="todo-inc__input"
+  type="number"
+  (input)="onInput($event)"
+/>
+<button type="button" class="button button__todo-inc" (click)="increaseValue()">
+  <svg plus-icon></svg>
+</button>
