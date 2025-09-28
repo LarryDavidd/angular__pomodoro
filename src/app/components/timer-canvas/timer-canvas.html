@@ -1,0 +1,45 @@
+<div class="wrapper wrapper__canvas">
+  <canvas
+    class="canvas"
+    #timerCanvas
+    [width]="widthCanvas()"
+    [height]="heightCanvas()"
+  ></canvas>
+
+  @if(isRestTimer()) {
+  <div class="canvas__wrapper-buttons">
+    @if(!this.isRunning() ) {
+    <button
+      class="button button__canvas button__canvas_rest"
+      (click)="startHandler()"
+    >
+      Начать перерыв
+    </button>
+    } @else {
+    <button
+      class="button button__canvas button__canvas_rest"
+      (click)="resetTimer('focus')"
+    >
+      Закончить перерыв
+    </button>
+    }
+  </div>
+  } @else {
+  <div class="canvas__wrapper-buttons">
+    @if(!this.isRunning() ) {
+    <button
+      class="button button__canvas"
+      [ngClass]="{ button__canvas_inactive: selectedTodoIsComplete() }"
+      (click)="startHandler()"
+    >
+      Начать фокусировку
+    </button>
+    } @else {
+    <button class="button button__canvas" (click)="stopHandler()">Пауза</button>
+    <button class="button button__canvas" (click)="resetTimer('rest')">
+      Рестарт
+    </button>
+    }
+  </div>
+  }
+</div>
