@@ -1,0 +1,41 @@
+<div class="wrapper wrapper__timer">
+  <app-timer-canvas></app-timer-canvas>
+  <div class="timer__content-wrapper">
+    <div class="timer__content">
+      <div class="timer__time-wrapper">
+        <p class="timer__value">
+          {{ timeSpent() }}<span class="timer__minutes">m</span>
+        </p>
+        <p class="todos__text">Время фокусировки</p>
+      </div>
+      <div class="timer__todos-list-wrapper">
+        <p class="timer__todos-period">
+          {{ selectedPeriod() | capitalizeFirst }}
+        </p>
+        <ul class="timer__todos-list">
+          @for (todo of ucompletedTodos(); track todo.idTodo) {
+          <app-todo
+            [showTimerNav]="false"
+            [showSettings]="false"
+            [showDate]="false"
+            [todo]="todo"
+          ></app-todo>
+          } @for (todo of completedTodos(); track $index) {
+          <app-todo
+            [showTimerNav]="false"
+            [showSettings]="false"
+            [showDate]="false"
+            [todo]="todo"
+          ></app-todo>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="timer__buttons">
+      <button class="button button__timer-back" (click)="navigateToMain()">
+        Go back
+      </button>
+    </div>
+  </div>
+</div>

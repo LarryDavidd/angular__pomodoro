@@ -1,0 +1,35 @@
+.button__canvas {
+  border: 1px solid var(--color-canvas-button-focus);
+  padding: 0.5rem;
+  border-radius: 15px;
+
+  &:hover {
+    background-color: var(--color-canvas-button-focus);
+    color: var(--color-canvas-button-text);
+  }
+}
+
+.button__canvas_rest {
+  border: 1px solid var(--color-canvas-button-rest);
+
+  &:hover {
+    background-color: var(--color-canvas-button-rest);
+    color: var(--color-canvas-button-text);
+  }
+}
+
+.canvas__wrapper-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+  gap: 1rem;
+}
+
+.button__canvas_inactive {
+  text-decoration: line-through;
+  background-color: var(--color-canvas-button-innactive);
+  pointer-events: none;
+}

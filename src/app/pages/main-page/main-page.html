@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="main-page__header">
-    <h2>{{ dayTodo() }}</h2>
+    <h2>{{ selectedPeriod() | capitalizeFirst }}</h2>
     <div class="main-page__icons-wrapper">
       <mat-icon class="icon icon__sort" (click)="openSortModalHandler()"
         >sort</mat-icon

@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-new-array */
 /* eslint-disable unicorn/no-array-reverse */
 /* eslint-disable unicorn/consistent-function-scoping */
 import {
@@ -8,13 +9,14 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ITodo, TodoStore } from '../../../store/todo-store';
+import { ITodo, TodoStore } from '../../store/todo-store';
 import { MatIconModule } from '@angular/material/icon';
-import { TomatoIcon } from '../../../icons/tomato-icon/tomato-icon';
+import { TomatoIcon } from '../../icons/tomato-icon/tomato-icon';
 import { NgClass } from '@angular/common';
-import { SettingIcon } from '../../../icons/settings-icon/settings-icon';
-import { TodoSettingsModal } from '../../../ui/todo-settings-modal/todo-settings-modal';
-import { isDateEqual } from '../../../utils/is-date-equal';
+import { SettingIcon } from '../../icons/settings-icon/settings-icon';
+import { TodoSettingsModal } from '../../ui/todo-settings-modal/todo-settings-modal';
+import { isDateEqual } from '../../utils/is-date-equal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -26,11 +28,28 @@ import { isDateEqual } from '../../../utils/is-date-equal';
 export class Todo {
   readonly store = inject(TodoStore);
   public todo = input.required<ITodo>();
+
+  public showTimerNav = input(true);
+  public showSettings = input(true);
+  public showDate = input(true);
+
   public isModalSettingsOpen = signal(false);
+  private selectedTodoId = this.store.selectedTodoId;
+  private router = inject(Router);
 
   public todoCompleteHandler(idTodo: string): void {
     this.store.todoChangeComplete(idTodo);
   }
+
+  public getPomodoroDisplay = computed((): number[] => {
+    const total = Math.min(this.todo().pomodoroValue, 5);
+    const complete = Math.min(this.todo().pomodoroValueComplete, total);
+
+    return [
+      ...new Array(complete).fill(1),
+      ...new Array(total - complete).fill(0),
+    ];
+  });
 
   public isOverdue = computed(() => {
     const [day, month, year] = this.todo().timeCreate.split(', ').map(Number);
@@ -77,10 +96,6 @@ export class Todo {
     return `${day} ${months[month - 1]}`;
   }
 
-  public createArray(length: number): string[] {
-    return Array.from({ length });
-  }
-
   public isNumberMoreFive(value: number): boolean {
     return value <= 5;
   }
@@ -106,4 +121,18 @@ export class Todo {
 
     return `circle__todo ${transformText}`;
   });
+
+  public navigateToTimer(): void {
+    this.router.navigate(['timer']);
+    this.store.addSelectedTodoId(this.todo().idTodo);
+  }
+
+  public todoIsActive(): boolean {
+    return this.todo().idTodo === this.selectedTodoId() && !this.showTimerNav();
+  }
+
+  public changeSelectedId(): void {
+    this.store.addSelectedTodoId(this.todo().idTodo);
+    console.log(this.store.selectedTodoId());
+  }
 }
