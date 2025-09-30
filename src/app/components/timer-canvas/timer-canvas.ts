@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/consistent-function-scoping */
 import {
   AfterViewInit,
@@ -261,6 +260,15 @@ export class TimerCanvas implements AfterViewInit {
             selectedTodo.idTodo,
             selectedTodo.pomodoroValueComplete + 1
           );
+
+          if (
+            selectedTodo.pomodoroValue <= selectedTodo.pomodoroValueComplete
+          ) {
+            this.store.todoChangePomodoroValue(
+              selectedTodo.idTodo,
+              selectedTodo.pomodoroValueComplete + 1
+            );
+          }
 
           this.store.increaseTimeSpent(selectedTodo.idTodo);
         }

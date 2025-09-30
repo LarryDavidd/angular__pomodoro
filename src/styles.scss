@@ -52,12 +52,22 @@ ul {
 }
 
 :root {
-  --color-secondary: #e74c3c;
-  --color-focus-input: #e74c3c;
+  --color-text-primary: #1a1b1f;
+  --color-text-secodary: #e74c3c;
+  --color-bg-primary: #d3d3d3;
+  --color-form-todo: white;
+
+  --color-bg-theme-switcher: #9f9f9f;
+  --color-bg-theme-switcher-active: #e74c3c;
+  --color-bg-theme-switcher-icon-dark: #7b86dd;
+  --color-bg-theme-switcher-icon-light: white;
+
   --color-icon-tomato: rgb(189, 188, 188);
   --color-icon-tomato-active: #f77a6c;
   --color-icon-tomato-complete: red;
-  --color-bg-primary: #d3d3d3;
+
+  --color-secondary: #e74c3c;
+  --color-focus-input: #e74c3c;
   --color-bg-second: #f1f0f5;
   --color-bg-timer: white;
   --color-button-inc-bg: #e74c3c;
@@ -95,6 +105,14 @@ ul {
       calendar-date-today-outline-color: var(--color-secondary),
     )
   );
+}
+
+:root[data-theme="dark"] {
+  --color-bg-primary: red;
+}
+
+body {
+  color: var(--color-text);
 }
 
 .button {

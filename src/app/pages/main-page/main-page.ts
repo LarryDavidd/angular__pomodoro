@@ -1,8 +1,6 @@
-/* eslint-disable unicorn/consistent-function-scoping */
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -12,10 +10,18 @@ import { Todos } from './todos/todos';
 import { FormTodos } from './form-todos/form-todos';
 import { SortModal } from '../../ui/sort-modal/sort-modal';
 import { CapitalizeFirstPipe } from '../../pipes/capitalize-first-pipe';
+import { ToggleTheme } from '../../ui/toggle-theme/toggle-theme';
 
 @Component({
   selector: 'app-main-page',
-  imports: [MatIconModule, Todos, FormTodos, SortModal, CapitalizeFirstPipe],
+  imports: [
+    MatIconModule,
+    Todos,
+    FormTodos,
+    SortModal,
+    CapitalizeFirstPipe,
+    ToggleTheme,
+  ],
   templateUrl: './main-page.html',
   styleUrl: './main-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,17 +37,7 @@ export class MainPage {
   public completedTodos = this.store.completedTodos;
   public uncompletedTodos = this.store.uncompletedTodos;
   public selectedPeriod = this.store.selectedPeriod;
-
-  public estimatedTime = computed(() => {
-    const totalPomodoros = this.uncompletedTodos().reduce(
-      (acc, curr) => acc + curr.pomodoroValue,
-      0
-    );
-
-    const [minutes] = this.store.timerPomodoro().split(':').map(Number);
-
-    return totalPomodoros * minutes;
-  });
+  public estimatedTime = this.store.estimatedTimeTotal;
 
   public timeSpent = this.store.totalTimeSpent;
 

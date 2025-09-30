@@ -31,6 +31,7 @@ export class Todos {
 
   public isEmptyTodos = this.store.isEmptyTodos;
   public sortTodos = this.store.currentSort;
+  public estimatedTime = this.store.estimatedTimeTotal;
 
   public isPriorityOrder = computed(
     () => this.sortTodos() === 'priority_order'

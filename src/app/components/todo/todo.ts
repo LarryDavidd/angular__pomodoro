@@ -42,6 +42,13 @@ export class Todo {
   }
 
   public getPomodoroDisplay = computed((): number[] => {
+    const pomodoro = this.todo().pomodoroValue;
+    const pomodoroComplete = this.todo().pomodoroValueComplete;
+
+    if (pomodoroComplete > pomodoro) {
+      return [...new Array(pomodoroComplete).fill(1)];
+    }
+
     const total = Math.min(this.todo().pomodoroValue, 5);
     const complete = Math.min(this.todo().pomodoroValueComplete, total);
 

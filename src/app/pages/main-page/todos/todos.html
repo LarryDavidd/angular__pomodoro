@@ -7,34 +7,34 @@
   </div>
   } @else { @if(isPriorityOrder()) { @if(isEmptyhighPriorityTodos()) {
   <ul class="main-page__todos-list">
-    <p>Высокий приоритет • (помидоры * время таймера)</p>
+    <p>Высокий приоритет • {{ estimatedTime() }}м</p>
     @for (todo of highPriorityTodos(); track todo.idTodo) {
     <app-todo [todo]="todo"></app-todo>
     }
   </ul>
   } @if(isEmptymediumPriorityTodos()) {
   <ul class="main-page__todos-list">
-    <p>Средний приоритет • (помидоры * время таймера)</p>
+    <p>Средний приоритет • {{ estimatedTime() }}m</p>
     @for (todo of mediumPriorityTodos(); track todo.idTodo) {
     <app-todo [todo]="todo"></app-todo>
     }
   </ul>
   } @if(isEmptylowPriorityTodos()) {
   <ul class="main-page__todos-list">
-    <p>Низкий приоритет • (помидоры * время таймера)</p>
+    <p>Низкий приоритет • {{ estimatedTime() }}m</p>
     @for (todo of lowPriorityTodos(); track todo.idTodo) {
     <app-todo [todo]="todo"></app-todo>
     }
   </ul>
   } @if(isEmptynoPriorityTodos()) {
   <ul class="main-page__todos-list">
-    <p>Нет приоритета • (помидоры * время таймера)</p>
+    <p>Нет приоритета • {{ estimatedTime() }}m</p>
     @for (todo of noPriorityTodos(); track todo.idTodo) {
     <app-todo [todo]="todo"></app-todo>
     }
   </ul>
   } } @else { @if(isEmptyUcompletedTodos()) {
-  <p>Задачи • (помидоры * время таймера)</p>
+  <p>Задачи • {{ estimatedTime() }}m</p>
   }
 
   <ul class="main-page__todos-list">

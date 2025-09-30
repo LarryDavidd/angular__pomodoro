@@ -16,6 +16,7 @@ export type Priority =
 
 export type SortTodos = 'project_order' | 'priority_order';
 export type Periods = 'today' | 'tomorrow' | 'all';
+export type Theme = 'dark' | 'light';
 
 export interface ITodo {
   idTodo: string;
@@ -30,7 +31,6 @@ export interface ITodo {
 
 export interface TodoState {
   estimatedTime: string;
-  timeSpent: string;
   todos: ITodo[];
   isLoading: boolean;
   error: undefined;
@@ -39,19 +39,20 @@ export interface TodoState {
   selectedTodoId: string;
   timerPomodoro: string;
   timerRestPomodoro: string;
+  themeApplication: Theme;
 }
 
 const initTodoState: TodoState = {
   estimatedTime: '',
-  timeSpent: '',
   todos: [],
   isLoading: false,
   error: undefined,
   sort: 'project_order',
   selectedPeriod: 'today',
   selectedTodoId: '',
-  timerPomodoro: '01:00',
+  timerPomodoro: '00:01',
   timerRestPomodoro: '01:00',
+  themeApplication: 'light',
 };
 
 export const TodoStore = signalStore(
@@ -82,7 +83,6 @@ export const TodoStore = signalStore(
       patchState(store, { isLoading: true });
 
       const mockData: Partial<TodoState> = {
-        timeSpent: '0',
         isLoading: false,
       };
 
@@ -120,6 +120,10 @@ export const TodoStore = signalStore(
           return todo;
         }),
       });
+    },
+
+    changeThemeApplication(theme: Theme): void {
+      patchState(store, { themeApplication: theme });
     },
 
     increaseTimeSpent(idTodo: string): void {
@@ -284,6 +288,20 @@ export const TodoStore = signalStore(
     currentPeriod: computed(() => store.selectedPeriod()),
     currentTimerPomodoro: computed(() => store.timerPomodoro()),
     currentTimerRestPomodoro: computed(() => store.timerRestPomodoro()),
+    currentTheme: computed(() => store.themeApplication()),
+
+    estimatedTimeTotal: computed(() => {
+      const period = store.selectedPeriod();
+
+      const totalPomodoros = store
+        .todos()
+        .filter((todo) => !todo.isComplete && filterByPeriod(todo, period))
+        .reduce((acc, curr) => acc + curr.pomodoroValue, 0);
+
+      const [minutes] = store.timerPomodoro().split(':').map(Number);
+
+      return totalPomodoros * minutes;
+    }),
 
     totalTimeSpent: computed(() => {
       const period = store.selectedPeriod();
@@ -291,11 +309,14 @@ export const TodoStore = signalStore(
         .todos()
         .filter((todo) => filterByPeriod(todo, period));
 
-      const sumSpentTime = filterTodos.reduce(
-        (acc, curr) => acc + curr.timeSpent,
+      const totalPomodoros = filterTodos.reduce(
+        (acc, curr) => acc + curr.pomodoroValue,
         0
       );
-      return sumSpentTime;
+
+      const [minutes] = store.timerPomodoro().split(':').map(Number);
+
+      return totalPomodoros * minutes;
     }),
   }))
 );

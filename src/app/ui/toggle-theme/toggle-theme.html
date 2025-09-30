@@ -1,0 +1,10 @@
+<label class="card__checkbox-label">
+  <input
+    type="checkbox"
+    [checked]="isActive()"
+    appActiveTheme
+    [darkThemeActive]="isActive()"
+    (change)="changeThemeApp()"
+  />
+  <span class="checkbox-switch"></span>
+</label>
